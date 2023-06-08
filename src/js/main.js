@@ -3,18 +3,15 @@ const listsContainer = document.querySelectorAll('.lists-container');
 const resetButton = document.getElementById('reset');
 
 let draggedItem = null;
-let originalListHTML = `
-  <div class="item" draggable="true">Food</div>
-  <div class="item" draggable="true">Drink</div>
-  <div class="item" draggable="true">Snack</div>
-  <div class="item" draggable="true">Spices</div>
-`;
+let originalListHTML = listsContainer[0].innerHTML;
 
 function dragStart() {
+  //will select the item
   draggedItem = this;
 }
 
 function dragEnd() {
+  //will set the className of the current element to 'item' after dragging
   this.className = 'item';
   draggedItem = null;
 }
@@ -30,11 +27,13 @@ function showMessage(message) {
 }
 
 function dragDrop() {
+  //append new list to second container and show message
   this.append(draggedItem);
   showMessage('Item succesfully dropped');
 }
 
 function dragOver(e) {
+  //prevent default behavior
   e.preventDefault();
 }
 
